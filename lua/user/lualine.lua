@@ -12,9 +12,9 @@ local diagnostics = {
 	sources = { "nvim_diagnostic" },
 	sections = { "error", "warn" },
 	symbols = { error = " ", warn = " " },
-	colored = false,
+	colored = true,
 	update_in_insert = false,
-	always_visible = true,
+	always_visible = false,
 }
 
 local diff = {
@@ -55,7 +55,7 @@ local progress = function()
 	local chars = { "__", "▁▁", "▂▂", "▃▃", "▄▄", "▅▅", "▆▆", "▇▇", "██" }
 	local line_ratio = current_line / total_lines
 	local index = math.ceil(line_ratio * #chars)
-	return chars[index]
+	return chars[#chars + 1 - index]
 end
 
 local spaces = function()

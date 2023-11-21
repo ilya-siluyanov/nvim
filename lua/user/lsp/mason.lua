@@ -1,12 +1,12 @@
 local servers = {
-	"sumneko_lua",
+	-- "sumneko_lua",
 	-- "cssls",
 	-- "html",
 	-- "tsserver",
 	"pyright",
-	-- "bashls",
+	"bashls",
 	"jsonls",
-	-- "yamlls",
+	"yamlls",
 }
 
 local settings = {
@@ -50,3 +50,9 @@ for _, server in pairs(servers) do
 
 	lspconfig[server].setup(opts)
 end
+
+lspconfig.pyright.setup {
+    analysis = {
+        typeCheckingMode = 'basic'
+    }
+}

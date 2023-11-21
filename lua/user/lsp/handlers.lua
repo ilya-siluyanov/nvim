@@ -71,6 +71,16 @@ local function lsp_keymaps(bufnr)
 	keymap(bufnr, "n", "<leader>lq", "<cmd>lua vim.diagnostic.setloclist()<CR>", opts)
 end
 
+local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
+local lsp_formatting = function(bufnr)
+    vim.lsp.buf.format({
+        filter = function(client)
+          return client.name == "null-ls"
+        end,
+        bufnr = bufnr,
+    })
+end
+
 M.on_attach = function(client, bufnr)
 	if client.name == "tsserver" then
 		client.server_capabilities.documentFormattingProvider = false
@@ -85,6 +95,16 @@ M.on_attach = function(client, bufnr)
 	if not status_ok then
 		return
 	end
+    if client.supports_method("textDocument/formatting") then
+        vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
+        vim.api.nvim_create_autocmd("BufWritePre", {
+            group = augroup,
+            buffer = bufnr,
+            callback = function()
+                lsp_formatting(bufnr)
+            end,
+        })
+    end
 	illuminate.on_attach(client)
 end
 
