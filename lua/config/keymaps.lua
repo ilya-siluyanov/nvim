@@ -8,3 +8,9 @@ vim.keymap.del("n", "<space>cd")
 vim.keymap.set({ "n", "i" }, "<leader>e", vim.diagnostic.open_float)
 
 vim.keymap.del({ "n" }, ",")
+
+vim.keymap.set({ "n" }, "<C-n>", "<cmd>Neotree toggle<cr>")
+vim.keymap.set({ "n" }, "<C-x>", function()
+  local x = require("bufferline.commands")
+  x.unpin_and_close(nil)
+end)
