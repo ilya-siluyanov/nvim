@@ -2,6 +2,7 @@ return {
   {
     "akinsho/bufferline.nvim",
     version = "*",
+    keys = {},
     dependencies = "nvim-tree/nvim-web-devicons",
     options = {
       offsets = {
@@ -13,7 +14,5 @@ return {
         },
       },
     },
-
-    keys = {},
   },
 }

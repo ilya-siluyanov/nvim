@@ -5,5 +5,8 @@ return {
     config = function()
       vim.g.gruvbox_material_foreground = "original"
     end,
+    opts = {
+      transparent_mode = true,
+    },
   },
 }
