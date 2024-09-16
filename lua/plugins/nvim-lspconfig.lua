@@ -9,7 +9,7 @@ return {
         gopls = {
           settings = {
             gopls = {
-              buildFlags = { "-tags=integration" },
+              buildFlags = { "-tags=integration,e2e" },
               gofumpt = true,
               codelenses = {
                 gc_details = false,
